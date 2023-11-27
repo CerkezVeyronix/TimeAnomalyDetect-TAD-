@@ -1,0 +1,52 @@
+---
+title: "Time Series Anomaly Detection Methods with TAD"
+author: Burak Cengiz
+date: "November 25, 2023"
+output: html_document
+---
+
+#Introduction
+
+Time series data often contains valuable information, but anomalies can obscure meaningful patterns. The TAD package offers powerful methods for detecting anomalies, enabling users to uncover hidden insights in their time series datasets.
+
+##Method 1: Interquartile Range (IQR) Method
+
+**Description:** The Interquartile Range (IQR) method is a statistical approach to identify outliers in time series data. It calculates the range between the first and third quartiles and identifies data points beyond a certain threshold as outliers.
+
+**Function: 'detect_outliers()'**
+
+\-**Parameters:**
+
+-ts_data: Time series data to analyze. -method: Method for detecting outliers (default is "iqr").
+
+\-**Usage Example:**
+
+\`\`\`r ts_data \<- read.csv(system.file("extdata", "example_data.csv", package = "TAD")) outliers \<- detect_outliers(ts_data, method = "iqr")
+
+##Method 2: Isolation Forest Description:
+
+The Isolation Forest algorithm is a machine learning technique for anomaly detection. It works by isolating anomalies in a dataset using binary trees. Anomalies are expected to have shorter paths in the trees, making them easier to isolate.
+
+**Function: detect_anomalies()**
+
+Parameters: ts_data: Time series data to analyze. algorithm: Anomaly detection algorithm to use (default is "isolation_forest"). Usage Example: r Copy code ts_data \<- read.csv(system.file("extdata", "example_data.csv", package = "TAD")) anomalies \<- detect_anomalies(ts_data, algorithm = "isolation_forest") Method 3: Seasonal-Trend decomposition using LOESS (STL) Description: The STL method decomposes time series data into seasonal, trend, and residual components. Anomalies are often found in the residual component, making STL effective for capturing unusual patterns.
+
+Parameters: ts_data: Time series data to analyze. algorithm: Anomaly detection algorithm to use (set to "stl").
+
+Usage Example: r Copy code ts_data \<- read.csv(system.file("extdata", "example_data.csv", package = "TAD")) anomalies \<- detect_anomalies(ts_data, algorithm = "stl")
+
+##Method 3: Seasonal-Trend decomposition using LOESS (STL)
+
+The STL method decomposes time series data into seasonal, trend, and residual components. Anomalies are often found in the residual component, making STL effective for capturing unusual patterns.
+
+##Use Cases
+
+Financial Time Series:Applying the IQR method to detect anomalies in stock prices.
+
+Network Traffic Monitoring: Utilizing the Isolation Forest algorithm to identify unusual patterns in network traffic.
+
+Energy Consumption: Employing STL decomposition to uncover anomalies in energy consumption data.
+
+#Conclusion
+
+This vignette has introduced three powerful anomaly detection methods provided by the TAD package. Users can choose the method that best fits their data characteristics and uncover meaningful insights from their time series datasets. Experimenting with different methods is encouraged to enhance the robustness of anomaly detection.
